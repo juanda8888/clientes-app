@@ -4,6 +4,8 @@ import { Cliente, Grupo } from './../cliente.model';
 import { Observable, Subscription } from 'rxjs';
 
 
+
+
 @Component({
   selector: 'app-listado-clientes',
   templateUrl: './listado-clientes.component.html',
@@ -13,7 +15,9 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
 
   clientes$: Observable<Cliente[]>;
   clientes: Cliente[];
+  displayedColumns: string[] = ['cif', 'nombre', 'direccion', 'grupo'];
   clientesSubscription: Subscription;
+  query = '';
 
   constructor(private clientesService: ClientesService) { }
   ngOnDestroy(): void {
@@ -24,5 +28,6 @@ export class ListadoClientesComponent implements OnInit, OnDestroy {
     this.clientes$ = this.clientesService.getClientes$();
     this.clientesSubscription = this.clientes$.subscribe(clientes => this.clientes = clientes);
   }
+
 
 }
