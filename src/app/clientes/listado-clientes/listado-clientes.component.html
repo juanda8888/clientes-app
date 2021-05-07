@@ -1,9 +1,12 @@
 <h2>
     Listado clientes
   </h2>
+  <p>
+    Escribe el filtrado de usuarios: <input type="text" [(ngModel)]="query">
+  </p>
   <div *ngIf="! clientes.length">No hay clientes por el momento</div>
   <div>
-    <article *ngFor="let cliente of clientes">
+    <article *ngFor="let cliente of clientes | clientes:query">
       <span>{{cliente.nombre}}</span>
       <span>{{cliente.cif}}</span>
       <span>{{cliente.direccion}}</span>
